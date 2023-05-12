@@ -1,7 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { announce } from '../images'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from "axios"
 
 const SignUp = () => {
+  const history = useNavigate();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  async function submit(e) {
+    e.preventDefault();
+
+    try {
+      await axios.post("http://localhost:5000/signup", {
+        email, password
+      })
+        .then(res => {
+          if (res.data == "exists") {
+            alert("User already exists")
+          }
+          else if (res.data == "not exists") {
+            history("/home")
+          }
+        })
+        .catch(err => {
+          alert("something is wrong")
+          console.log(err);
+        })
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -16,8 +46,8 @@ const SignUp = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
-        <div>
+        <form className="space-y-6" action="POST" method="POST">
+          <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
               Username
             </label>
@@ -33,7 +63,7 @@ const SignUp = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            <label htmlFor="email" onChange={(e) => { setEmail(e.target.value) }} className="block text-sm font-medium leading-6 text-gray-900">
               Email address
             </label>
             <div className="mt-2">
@@ -50,10 +80,10 @@ const SignUp = () => {
 
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="password" onChange={(e) => { setPassword(e.target.value) }} className="block text-sm font-medium leading-6 text-gray-900">
                 Password
               </label>
-              
+
             </div>
             <div className="mt-2">
               <input
@@ -87,9 +117,10 @@ const SignUp = () => {
           <div>
             <button
               type="submit"
+              onClick={submit}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Create account
+              <Link to="/home">Create account</Link>
             </button>
           </div>
         </form>
