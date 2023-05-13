@@ -25,12 +25,10 @@ const userSchema = {
 };
 const User = mongoose.model("User", userSchema);
 
-app.get("/signin", cors(), (req, res) => {
-    
-});
+app.get("/signin", cors(), (req, res) => {});
 
 app.post("/signin", async (req, res) => {
-  const {email, password} = req.body;
+  const { email, password } = req.body;
   try {
     const check = await User.findOne({ email });
     if (check) {
@@ -46,16 +44,19 @@ app.post("/signup", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const data = {
-    email:email, 
-    password: password
-  }
+    email: email,
+    password: password,
+  };
   try {
     const check = await User.findOne({ email });
     if (check) {
       res.json("exists");
     } else {
       res.json("not exists");
-      const newUser = await User.insertMany([data])
+      const newUser = await User.insertMany({
+        email: email,
+        password: password,
+      });
       await newUser.save();
     }
   } catch (err) {
