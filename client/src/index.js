@@ -13,8 +13,19 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Announce from './pages/Announce';
+import Contact from './pages/Contact';
 
 const Layout = () => {
+  return (
+    <div>
+      <Header />
+      <Home />
+      <Footer />
+    </div>
+  )
+}
+const AnnouncePage = () => {
   return (
     <div>
       <Header />
@@ -42,6 +53,14 @@ const router = createBrowserRouter([
   {
     path: "home",
     element: <Layout />,
+  },
+  {
+    path: "announce",
+    element: <Announce />,
+  },
+  {
+    path: "contact",
+    element: <Contact />,
   },
 ]);
 

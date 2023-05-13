@@ -11,16 +11,13 @@ const Header = () => {
         <div className="flex items-center gap-8">
           <ul className="flex items-center gap-8">
             <li className="text-base text-black font-bold hover:text-blue-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer">
-              Home
+            <Link to="/home">Home</Link>
             </li>
             <li className="text-base text-black font-bold hover:text-blue-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer">
-              Categories
+              <Link to="/announce">Announce</Link>
             </li>
             <li className="text-base text-black font-bold hover:text-blue-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer">
-              About
-            </li>
-            <li className="text-base text-black font-bold hover:text-blue-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer">
-              Contact
+             <Link to="/contact">Contact</Link>
             </li>
           </ul>
 
