@@ -10,7 +10,7 @@ import StarRating from "./components/StarRating";
 function App() {
   return (
     <div className="font-bodyFont">
-      <Home />
+      <Landing />
     </div>
   );
 }

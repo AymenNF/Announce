@@ -24,10 +24,10 @@ const ProductDetails = () => {
   }
   function handleChangePrevious() {
     if (currentUrlIndex > 0) {
-      currentUrlIndex--;
+      setCurrentUrlIndex(currentUrlIndex--);
       setUrl(imagesUrls[currentUrlIndex]);
     } else {
-      currentUrlIndex = imagesUrls.length - 1;
+      setCurrentUrlIndex(imagesUrls.length - 1);
       setUrl(imagesUrls[currentUrlIndex]);
     }
   }
@@ -64,6 +64,10 @@ const ProductDetails = () => {
         </div>
         <div class="rating">
           <StarRating />
+          <h4>
+            Price : <span class="font-bold">12.99$</span>
+          </h4>
+          <br />
           <h4 class="font-bold">Description</h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
