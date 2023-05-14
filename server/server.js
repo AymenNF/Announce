@@ -23,7 +23,15 @@ const userSchema = {
   email: String,
   password: String,
 };
+const announceSchema = {
+  name: String,
+  price: Number,
+  imageUrl: String,
+  description: String,
+};
 const User = mongoose.model("User", userSchema);
+const Announce = mongoose.model("Announce", announceSchema);
+
 
 app.get("/signin", cors(), (req, res) => {});
 
@@ -58,6 +66,37 @@ app.post("/signup", async (req, res) => {
         password: password,
       });
       await newUser.save();
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.post("/announce", async (req, res) => {
+  const name = req.body.name;
+  const price = req.body.price;
+  const imageUrl = req.body.imageUrl;
+  const description = req.body.description;
+  const data = {
+    name: name,
+    price: price,
+    imageUrl: imageUrl,
+    description: description,
+  };
+
+  try {
+    const check = await Announce.findOne({ imageUrl });
+    if (check) {
+      res.json("exists");
+    } else {
+      res.json("not exists");
+      const newProduct = await Announce.insertMany({
+        name: name,
+        imageUrl: imageUrl,
+        description: description,
+        price: price,
+      });
+      await newProduct.save();
     }
   } catch (err) {
     console.log(err);

@@ -1,20 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
 import {
   createBrowserRouter,
   RouterProvider,
   Route,
   Link,
 } from "react-router-dom";
-import SignUp from './pages/SignUp';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Announce from './pages/Announce';
-import Contact from './pages/Contact';
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Announce from "./pages/Announce";
+import Contact from "./pages/Contact";
+import ProductDetails from "./pages/ProductDetails";
 
 const Layout = () => {
   return (
@@ -23,8 +24,8 @@ const Layout = () => {
       <Home />
       <Footer />
     </div>
-  )
-}
+  );
+};
 const AnnouncePage = () => {
   return (
     <div>
@@ -32,15 +33,13 @@ const AnnouncePage = () => {
       <Home />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <App />
-    ),
+    element: <App />,
   },
   {
     path: "signup",
@@ -62,14 +61,15 @@ const router = createBrowserRouter([
     path: "contact",
     element: <Contact />,
   },
+  {
+    path: "details",
+    element: <ProductDetails />,
+  },
 ]);
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-
