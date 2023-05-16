@@ -26,16 +26,6 @@ const Layout = () => {
     </div>
   );
 };
-const AnnouncePage = () => {
-  return (
-    <div>
-      <Header />
-      <Home />
-      <Footer />
-    </div>
-  );
-};
-
 const router = createBrowserRouter([
   {
     path: "/",

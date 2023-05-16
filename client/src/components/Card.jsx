@@ -1,28 +1,27 @@
 import React from 'react'
 
 
-const Card = () => {
+const Card = (props) => {
   return (
     
       <div class="relative flex h-96 p-3 flex-col rounded-xl bg-gray-300 bg-clip-border text-gray-700 shadow-lg">
         <div class="relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
           <img
-            src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80"
+            src={props.imageUrl}
             class="h-full w-full object-cover"
           />
         </div>
         <div class="p-6">
           <div class="mb-2 flex items-center justify-between">
             <p class="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
-              Apple AirPods
+              {props.name}
             </p>
             <p class="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
-              <p className='contrast-50 line-through'>$120.00</p> $95.00
+               {props.price} $
             </p>
           </div>
           <p class="block font-sans text-sm font-normal leading-normal text-gray-700 antialiased opacity-75">
-            With plenty of talk and listen time, voice-activated Siri access, and an
-            available wireless charging case.
+            {props.description}
           </p>
         </div>
         <div class="pt-0">
@@ -40,3 +39,5 @@ const Card = () => {
 }
 
 export default Card
+
+//"https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80"

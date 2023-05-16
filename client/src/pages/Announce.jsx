@@ -2,13 +2,13 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 
 function Announce() {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
+  const [price, setPrice] = useState(0)
   const [imageUrl, setImageurl] = useState('')
   const [description, setDescription] = useState('')
 
@@ -24,7 +24,7 @@ function Announce() {
             alert("Product already exists")
           }
           else if (res.data == "not exists") {
-            history("/home")
+            navigate("/home")
           }
         })
         .catch(err => {
@@ -46,7 +46,7 @@ function Announce() {
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                             Product name
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => { setName(e.target.value) }} id="name" type="text" name='name' />
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={(e) => { setName(e.target.value) }} id="name" type="text" name='name' value={name} />
                         <p class="text-gray-600 text-xs italic">Required</p>
                     </div>
                 </div>
@@ -64,7 +64,7 @@ function Announce() {
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                             Price
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="price" type="text" name='price' onChange={(e) => { setPrice(e.target.value) }} />
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="price" type="number" name='price' onChange={(e) => { setPrice(e.target.value) }} value={price} />
                         <p class="text-gray-600 text-xs italic">Required</p>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ function Announce() {
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                             Image URL
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="imageUrl" name='imageUrl' type="text" onChange={(e) => { setImageurl(e.target.value) }} />
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="imageUrl" name='imageUrl' type="text" onChange={(e) => { setImageurl(e.target.value) }} value={imageUrl} />
                         <p class="text-gray-600 text-xs italic">Required</p>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ function Announce() {
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                             Description
                         </label>
-                        <textarea class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="description" name='description' onChange={(e) => { setDescription(e.target.value) }}></textarea>
+                        <textarea class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="description" name='description' onChange={(e) => { setDescription(e.target.value) }} value={description}></textarea>
                     </div>
                     <p class="text-gray-600 text-xs italic">Optional</p>
                 </div>
