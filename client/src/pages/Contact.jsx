@@ -5,7 +5,7 @@ import Header from '../components/Header'
 function Contact() {
     return (
         <div>
-            
+            <Header/>
             <div className='relative left-28 p-8'>
                 <h1 className='flex justify-center font-titleFont text-black-700 text-xl font-bold mb-2'>Contact</h1>
                 <form class="inline-block w-full max-w-lg">
@@ -43,7 +43,7 @@ function Contact() {
                     </div>
                 </form>
             </div>
-            
+            <Footer/>
         </div>
     )
 }

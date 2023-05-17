@@ -75,7 +75,7 @@ app.get("/api/details/:productId", async (req, res) => {
   const requestedProduct = req.params.productId;
   try {
     const product = await Announce.findById(requestedProduct);
-    res.json({product});
+    res.json(product);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Failed to fetch product details" });

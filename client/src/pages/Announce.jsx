@@ -33,7 +33,7 @@ function Announce() {
     }
     return (
         <div>
-            
+            <Header/>
             <h1 className='flex justify-center font-titleFont text-black-700 text-xl font-bold mb-2 p-2'>Announce</h1>
             <form class="relative left-28 w-full max-w-lg p-6">
                 <div class="flex flex-wrap -mx-3 mb-6">
@@ -90,7 +90,7 @@ function Announce() {
                     <div class="md:w-2/3"></div>
                 </div>
             </form>
-            
+            <Footer />
         </div>
     )
 }

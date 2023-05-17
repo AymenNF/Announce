@@ -16,7 +16,6 @@ import AdminDashboard from "./pages/AdminDashboard";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Header />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/signup" element={<SignUp />} />
@@ -27,7 +26,6 @@ ReactDOM.render(
         <Route path="/contact" element={<Contact />} />
         <Route path="/details/:productId" element={<ProductDetails />} />
       </Routes>
-      <Footer />
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

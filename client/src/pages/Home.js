@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import { Link } from "react-router-dom";
 import axios from "axios"
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Home = () => {
   document.body.style.backgroundImage = "none";
@@ -45,6 +47,8 @@ const Home = () => {
     typeChangeSubmit()
   }, [selectedOption])
   return (
+    <div>
+      <Header/>
         <div className="py-10 px-4 grid grid-cols-4 gap-10">
         {data.map((product) => (<Link to={`/details/${product._id}`}><div key={product._id}>
           <Card
@@ -56,6 +60,8 @@ const Home = () => {
         </div>
         </Link>
         ))}
+        </div>
+        <Footer/>
         </div>
       
   );
