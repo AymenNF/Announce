@@ -6,39 +6,34 @@ import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 
 function Announce() {
-  const navigate = useNavigate();
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState(0)
-  const [imageUrl, setImageurl] = useState('')
-  const [description, setDescription] = useState('')
+    const navigate = useNavigate();
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState(0)
+    const [imageUrl, setImageurl] = useState('')
+    const [description, setDescription] = useState('')
 
-  async function submit(e) {
-    e.preventDefault();
+    async function submit(e) {
+        e.preventDefault();
 
-    try {
-      await axios.post("http://localhost:5000/announce", {
-        name, price, imageUrl, description
-      })
-        .then(res => {
-          if (res.data == "exists") {
-            alert("Product already exists")
-          }
-          else if (res.data == "not exists") {
-            navigate("/home")
-          }
-        })
-        .catch(err => {
-          alert("something is wrong")
-          console.log(err);
-        })
+        try {
+            await axios.post("http://localhost:5000/announce", {
+                name, price, imageUrl, description
+            })
+                .then(
+                    navigate("/home")
+                )
+                .catch(err => {
+                    alert("something is wrong")
+                    console.log(err);
+                })
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
-    catch (err) {
-      console.log(err);
-    }
-  }
     return (
         <div>
-            <Header />
+            
             <h1 className='flex justify-center font-titleFont text-black-700 text-xl font-bold mb-2 p-2'>Announce</h1>
             <form class="relative left-28 w-full max-w-lg p-6">
                 <div class="flex flex-wrap -mx-3 mb-6">
@@ -95,7 +90,7 @@ function Announce() {
                     <div class="md:w-2/3"></div>
                 </div>
             </form>
-            <Footer />
+            
         </div>
     )
 }

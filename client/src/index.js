@@ -1,13 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from "./App";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -16,50 +11,24 @@ import Footer from "./components/Footer";
 import Announce from "./pages/Announce";
 import Contact from "./pages/Contact";
 import ProductDetails from "./pages/ProductDetails";
+import AdminDashboard from "./pages/AdminDashboard";
 
-const Layout = () => {
-  return (
-    <div>
-      <Header />
-      <Home />
-      <Footer />
-    </div>
-  );
-};
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "signup",
-    element: <SignUp />,
-  },
-  {
-    path: "signin",
-    element: <Login />,
-  },
-  {
-    path: "home",
-    element: <Layout />,
-  },
-  {
-    path: "announce",
-    element: <Announce />,
-  },
-  {
-    path: "contact",
-    element: <Contact />,
-  },
-  {
-    path: "details",
-    element: <ProductDetails />,
-  },
-]);
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/announce" element={<Announce />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/details/:productId" element={<ProductDetails />} />
+      </Routes>
+      <Footer />
+    </Router>
+  </React.StrictMode>,
+  document.getElementById("root")
 );

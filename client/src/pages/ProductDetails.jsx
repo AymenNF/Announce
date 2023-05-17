@@ -1,9 +1,25 @@
+import React, { useEffect, useState } from 'react';
 import StarRating from "../components/StarRating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../components/Card";
-import React from "react";
 import Header from "../components/Header";
-const ProductDetails = (props) => {
+import { useParams } from 'react-router-dom';
+import axios from "axios"
+const ProductDetails = () => {
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`/api/details/${productId}`);
+        setProduct(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProduct();
+  }, [productId]);
   let imagesUrls = [
     "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80",
     "https://cdn.blessthisstuff.com/imagens/stuff/black-airpods.jpg",
@@ -32,9 +48,10 @@ const ProductDetails = (props) => {
     }
   }
   document.body.style.backgroundImage = "none";
+
   return (
-    <div>
-      <Header />
+    <div className='p-16'>
+      
       <div className="ProductDetails">
         <div>
           <img src={url} class="product-details-images" />
@@ -45,15 +62,11 @@ const ProductDetails = (props) => {
                 src="https://cdn.icon-icons.com/icons2/2838/PNG/512/go_previous_icon_180850.png"
               />
             </button>
-            <button>
-              <img className="product-small-img 0" src={imagesUrls[0]} />
+            {imagesUrls.map((imageUrl, index) => (
+            <button key={index}>
+              <img className={`product-small-img ${index}`} src={imageUrl} alt="Thumbnail" />
             </button>
-            <button>
-              <img className="product-small-img 1" src={imagesUrls[1]} />
-            </button>
-            <button>
-              <img className="product-small-img 2" src={imagesUrls[2]} />
-            </button>
+          ))}
             <button onClick={handleChangeNext}>
               <img
                 className="change-big-image"
@@ -65,10 +78,10 @@ const ProductDetails = (props) => {
         <div class="rating">
           <StarRating />
           <h4>
-            Price : <span class="font-bold">{props.price}$</span>
+            Price : <span class="font-bold">120$</span>
           </h4>
           <br />
-          <h4 class="font-bold">{props.description}</h4>
+          <h4 class="font-bold">IIIIIIIIIIIIIIIIIIIIIIIIII</h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
             <br />

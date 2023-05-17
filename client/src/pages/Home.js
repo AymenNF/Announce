@@ -3,7 +3,7 @@ import Card from "../components/Card";
 import { Link } from "react-router-dom";
 import axios from "axios"
 
-const Home = (props) => {
+const Home = () => {
   document.body.style.backgroundImage = "none";
   const [data, setData] = useState([]);
   const [selectedOption, setSelectedOption] = useState('All');
@@ -12,7 +12,7 @@ const Home = (props) => {
 
     try {
 
-      await axios.post("http://localhost:5000/getProducts", {
+      await axios.post("http://localhost:5000/details", {
         selectedOption
       })
         .then(res => {
@@ -45,9 +45,8 @@ const Home = (props) => {
     typeChangeSubmit()
   }, [selectedOption])
   return (
-      <Link to="/details">
         <div className="py-10 px-4 grid grid-cols-4 gap-10">
-        {data.map((product) => (<div key={product._id}>
+        {data.map((product) => (<Link to={`/details/${product._id}`}><div key={product._id}>
           <Card
             name={product.name}
             imageUrl={product.imageUrl}
@@ -55,9 +54,10 @@ const Home = (props) => {
             description={product.description}
           />
         </div>
+        </Link>
         ))}
         </div>
-      </Link>
+      
   );
 };
 

@@ -7,7 +7,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static("public"));
 
@@ -33,7 +33,6 @@ const announceSchema = {
 const User = mongoose.model("User", userSchema);
 const Announce = mongoose.model("Announce", announceSchema);
 
-
 app.get("/", cors(), (req, res) => {});
 
 app.post("/signin", async (req, res) => {
@@ -49,34 +48,39 @@ app.post("/signin", async (req, res) => {
   }
 });
 
-app.post("/getProducts", async (req, res) => {
+app.post("/details", async (req, res) => {
   try {
-      const type =req.body.selectedOption
-      const name = req.body.name
+    const type = req.body.selectedOption;
+    const name = req.body.name;
 
-      if (type == "All") {
-
-          const allProductsPromise = await Announce.find({});
-            const data = {
-              allProducts:allProductsPromise
-            };
-              res.json(data)
-
-      }
-      else {
-
-          const allProductsPromise =await Announce.find({name: name});
-            const data = {
-              allProducts:allProductsPromise
-            };
-            res.json(data)
-          
-      }
+    if (type == "All") {
+      const allProductsPromise = await Announce.find({});
+      const data = {
+        allProducts: allProductsPromise,
+      };
+      res.json(data);
+    } else {
+      const allProductsPromise = await Announce.find({ name: name });
+      const data = {
+        allProducts: allProductsPromise,
+      };
+      res.json(data);
     }
-    catch (e) {
-      res.json("fail")
+  } catch (e) {
+    res.json("fail");
   }
-  });
+});
+
+app.get("/api/details/:productId", async (req, res) => {
+  const requestedProduct = req.params.productId;
+  try {
+    const product = await Announce.findById(requestedProduct);
+    res.json({product});
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Failed to fetch product details" });
+  }
+});
 
 app.post("/signup", async (req, res) => {
   const email = req.body.email;
@@ -116,20 +120,8 @@ app.post("/announce", async (req, res) => {
   };
 
   try {
-    const item = req.body;
-    const check = await Announce.findOne(item);
-    if (check) {
-      res.json("exists");
-    } else {
-      res.json("not exists");
-      const newProduct = await Announce.insertMany({
-        name: name,
-        imageUrl: imageUrl,
-        description: description,
-        price: price,
-      });
-      await newProduct.save();
-    }
+    const newProduct = await new Announce(data);
+    await newProduct.save();
   } catch (err) {
     console.log(err);
   }
