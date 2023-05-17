@@ -27,4 +27,8 @@ const AdminCard = (props) => {
     </div>
   );
 };
+<<<<<<< HEAD
 export default AdminCard;
+=======
+export default AdminCard;
+>>>>>>> ccc18adc72a8d1a89f74b792080ba91be7e3c66d

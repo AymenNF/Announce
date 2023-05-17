@@ -91,3 +91,18 @@ code {
 .Add-to-cart-button:hover {
   background-color: #60a5fa;
 }
+.add-announcement {
+  display: grid;
+  place-items: center;
+}
+.announce-now {
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 60px;
+  background-color: #38bdf8;
+  border-radius: 15px;
+}
+.announce-now:hover {
+  background-color: #7dd3fc;
+}
