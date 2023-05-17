@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../components/Card";
 import React from "react";
 import Header from "../components/Header";
-const ProductDetails = () => {
+const ProductDetails = (props) => {
   let imagesUrls = [
     "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80",
     "https://cdn.blessthisstuff.com/imagens/stuff/black-airpods.jpg",
@@ -65,10 +65,10 @@ const ProductDetails = () => {
         <div class="rating">
           <StarRating />
           <h4>
-            Price : <span class="font-bold">12.99$</span>
+            Price : <span class="font-bold">{props.price}$</span>
           </h4>
           <br />
-          <h4 class="font-bold">Description</h4>
+          <h4 class="font-bold">{props.description}</h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
             <br />
