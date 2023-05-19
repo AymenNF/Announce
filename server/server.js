@@ -35,18 +35,17 @@ const Announce = mongoose.model("Announce", announceSchema);
 
 app.get("/", cors(), (req, res) => {});
 
-app.post("/signin", async (req, res) => {
-  const { email, password } = req.body;
+app.get("/api/details/:productId", async (req, res) => {
+  const requestedProduct = req.params.productId;
   try {
-    const check = await User.findOne({ email });
-    if (check) {
-      res.json("exists");
-    }
-    res.json("not exists");
+    const product = await Announce.findById(requestedProduct);
+    res.json(product);
   } catch (err) {
     console.log(err);
+    res.status(500).json({ error: "Failed to fetch product details" });
   }
 });
+
 
 app.post("/details", async (req, res) => {
   try {
@@ -71,30 +70,21 @@ app.post("/details", async (req, res) => {
   }
 });
 
-app.get("/api/details/:productId", async (req, res) => {
-  const requestedProduct = req.params.productId;
-  try {
-    const product = await Announce.findById(requestedProduct);
-    res.json(product);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: "Failed to fetch product details" });
-  }
-});
-
 app.post("/signup", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const user = req.body;
-  const data = {
-    email: email,
-    password: password,
-  };
+  const adminEmail = "admin@gmail.com";
   try {
     const check = await User.findOne(user);
-    if (check) {
+    const checkAdmin = (user.email === adminEmail);
+    if (check && !checkAdmin) {
       res.json("exists");
-    } else {
+    }
+    else if (check && checkAdmin){
+      res.json("exists and it is an admin")
+    } 
+    else {
       res.json("not exists");
       const newUser = await User.insertMany({
         email: email,
@@ -124,6 +114,18 @@ app.post("/announce", async (req, res) => {
     await newProduct.save();
   } catch (err) {
     console.log(err);
+  }
+});
+
+app.delete("/api/details/:productId", async (req, res) => {
+  const id = req.params.productId;
+
+  try {
+    await Announce.deleteOne({ _id: id });
+    res.json("Successful deletion");
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ error: "Server error" });
   }
 });
 

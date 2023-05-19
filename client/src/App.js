@@ -8,8 +8,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
-    <div className="font-bodyFont">
-      <AdminDashboard />
+    <div className="font-bodyFont w-screen overflow-hidden">
+      <Landing />
     </div>
   );
 }

@@ -1,6 +1,20 @@
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios"
+import React, { useState } from "react";
 const AdminCard = (props) => {
+  const [isDeleted, setIsDeleted] = useState(false);
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:5000/api/details/${props.productId}`);
+      setIsDeleted(true);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+  if (isDeleted) {
+    return null;
+  }
   return (
     <div class="relative flex h-96 p-3 flex-col rounded-xl bg-gray-300 bg-clip-border text-gray-700 shadow-lg">
       <div class="relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
@@ -20,15 +34,11 @@ const AdminCard = (props) => {
         </p>
       </div>
       <div class="pt-0">
-        <Button variant="outlined" startIcon={<DeleteIcon />}>
+        <Button type="reset" variant="outlined" startIcon={<DeleteIcon />} onClick={handleDelete}>
           Delete
         </Button>
       </div>
     </div>
   );
 };
-<<<<<<< HEAD
 export default AdminCard;
-=======
-export default AdminCard;
->>>>>>> ccc18adc72a8d1a89f74b792080ba91be7e3c66d

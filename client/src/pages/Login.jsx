@@ -15,15 +15,18 @@ function Login() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/signup", {  
+      await axios.post("http://localhost:5000/signup", {
         email, password
       })
         .then(res => {
           if (res.data == "exists") {
             history("/home")
           }
+          else if (res.data == "exists and it is an admin") {
+            history("/admin")
+          }
           else if (res.data == "not exists") {
-            alert("User have not sign up")
+            alert("User already exists")
           }
         })
         .catch(err => {

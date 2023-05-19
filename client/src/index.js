@@ -6,8 +6,6 @@ import App from "./App";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Announce from "./pages/Announce";
 import Contact from "./pages/Contact";
 import ProductDetails from "./pages/ProductDetails";
