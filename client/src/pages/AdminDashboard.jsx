@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -18,7 +17,7 @@ function AdminDashboard() {
         selectedOption
       })
         .then(res => {
-          if (res.data == 'fail') {
+          if (res.data === 'fail') {
             console.log("Somethig went wrong!");
 
           }
@@ -45,7 +44,7 @@ function AdminDashboard() {
 
   useEffect(() => {
     typeChangeSubmit()
-  }, [selectedOption])
+  }, [])
   return (
     <div>
       <Header/>

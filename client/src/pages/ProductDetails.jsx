@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import StarRating from "../components/StarRating";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "../components/Header";
 import { useParams } from 'react-router-dom';
 import axios from "axios"
@@ -8,7 +7,7 @@ import Footer from '../components/Footer';
 const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
-  let [url, setUrl] = useState("");
+  const [url, setUrl] = useState("")
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -54,12 +53,13 @@ const ProductDetails = () => {
 
         <div className="ProductDetails">
           <div>
-            <img src={product?.imageUrl} class="product-details-images" />
+            <img src={product?.imageUrl} class="product-details-images" alt='image' />
             <div className="small-images">
               <button onClick={handleChangePrevious}>
                 <img
                   className="change-big-image"
                   src="https://cdn.icon-icons.com/icons2/2838/PNG/512/go_previous_icon_180850.png"
+                  alt='image'
                 />
               </button>
               {imagesUrls.map((imageUrl, index) => (
@@ -71,6 +71,7 @@ const ProductDetails = () => {
                 <img
                   className="change-big-image"
                   src="https://cdn.icon-icons.com/icons2/2838/PNG/512/go_previous_icon_180852.png"
+                  alt='image'
                 />
               </button>
             </div>

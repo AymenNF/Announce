@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { announce } from '../images'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
@@ -16,10 +16,10 @@ const SignUp = () => {
         email, password
       })
         .then(res => {
-          if (res.data == "exists") {
+          if (res.data === "exists") {
             alert("User already exists")
           }
-          else if (res.data == "not exists") {
+          else if (res.data === "not exists") {
             history("/home")
           }
         })
@@ -92,23 +92,6 @@ const SignUp = () => {
                 name="password"
                 type="password"
                 onChange={(e) => { setPassword(e.target.value) }}
-                autoComplete="current-password"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div>
-            <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                Confirm password
-              </label>
-            </div>
-            <div className="mt-2">
-              <input
-                id="password"
-                name="password"
-                type="password"
                 autoComplete="current-password"
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

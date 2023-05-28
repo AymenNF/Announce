@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { announce } from '../images'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
@@ -19,13 +19,13 @@ function Login() {
         email, password
       })
         .then(res => {
-          if (res.data == "exists") {
+          if (res.data === "exists") {
             history("/home")
           }
-          else if (res.data == "exists and it is an admin") {
+          else if (res.data === "exists and it is an admin") {
             history("/admin")
           }
-          else if (res.data == "not exists") {
+          else if (res.data === "not exists") {
             alert("User already exists")
           }
         })
@@ -78,7 +78,7 @@ function Login() {
                 Password
               </label>
               <div className="text-sm">
-                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                <a href="" className="font-semibold text-indigo-600 hover:text-indigo-500">
                   Forgot password?
                 </a>
               </div>

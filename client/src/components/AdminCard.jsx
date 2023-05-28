@@ -18,7 +18,7 @@ const AdminCard = (props) => {
   return (
     <div class="relative flex h-96 p-3 flex-col rounded-xl bg-gray-300 bg-clip-border text-gray-700 shadow-lg">
       <div class="relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
-        <img src={props.imageUrl} class="h-full w-full object-cover" />
+        <img src={props.imageUrl} class="h-full w-full object-cover" alt="image" />
       </div>
       <div class="p-6">
         <div class="mb-2 flex items-center justify-between">
