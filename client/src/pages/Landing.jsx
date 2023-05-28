@@ -1,15 +1,19 @@
-import React from 'react'
-import {announce} from "../images";
-import { Link } from 'react-router-dom';
- 
+import React from "react";
+import { announce } from "../images";
+import { Link } from "react-router-dom";
+
 function Landing() {
   return (
-    <div className="w-full h-20  font-titleFont sticky top-0 z-50">
+    <div className="w-full  font-titleFont sticky top-0 pt-3">
       <div className="max-w-screen-xl h-full mx-auto flex items-center justify-between">
         <img className="w-28" src={announce} alt="" />
         <div className="actions">
-          <button className="SignUp hover:scale-125"><Link to="/signup">Sign Up</Link></button>
-          <button className="SignIn hover:scale-125"><Link to="/signin">Sign In</Link></button>
+          <button className="SignUp hover:scale-125">
+            <Link to="/signup">Sign Up</Link>
+          </button>
+          <button className="SignIn hover:scale-125">
+            <Link to="/signin">Sign In</Link>
+          </button>
         </div>
       </div>
       <div className="landing CTA">
@@ -24,7 +28,7 @@ function Landing() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Landing
+export default Landing;
