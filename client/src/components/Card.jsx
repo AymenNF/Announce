@@ -9,6 +9,7 @@ const Card = (props) => {
           <img
             src={props.imageUrl}
             class="h-full w-full object-cover"
+            alt=''
           />
         </div>
         <div class="p-6">
@@ -29,7 +30,7 @@ const Card = (props) => {
             class="block w-full select-none rounded-lg bg-blue-gray-900/10 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
           >
-            Add to Cart
+            Consulter
           </button>
         </div>
       </div>

@@ -30,8 +30,14 @@ const announceSchema = {
   imageUrl: String,
   description: String,
 };
+const contactSchema = {
+  userName: String,
+  userEmail: String,
+  userMessage: String,
+};
 const User = mongoose.model("User", userSchema);
 const Announce = mongoose.model("Announce", announceSchema);
+const Contact = mongoose.model("Contact", contactSchema);
 
 app.get("/", cors(), (req, res) => {});
 
@@ -45,7 +51,6 @@ app.get("/api/details/:productId", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch product details" });
   }
 });
-
 
 app.post("/details", async (req, res) => {
   try {
@@ -77,14 +82,12 @@ app.post("/signup", async (req, res) => {
   const adminEmail = "admin@gmail.com";
   try {
     const check = await User.findOne(user);
-    const checkAdmin = (user.email === adminEmail);
+    const checkAdmin = user.email === adminEmail;
     if (check && !checkAdmin) {
       res.json("exists");
-    }
-    else if (check && checkAdmin){
-      res.json("exists and it is an admin")
-    } 
-    else {
+    } else if (check && checkAdmin) {
+      res.json("exists and it is an admin");
+    } else {
       res.json("not exists");
       const newUser = await User.insertMany({
         email: email,
@@ -112,6 +115,25 @@ app.post("/announce", async (req, res) => {
   try {
     const newProduct = await new Announce(data);
     await newProduct.save();
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.post("/contact", async (req, res) => {
+  const userName = req.body.userName;
+  const userEmail = req.body.userEmail;
+  const userMessage = req.body.userMessage;
+
+  const data = {
+    userName: userName,
+    userEmail: userEmail,
+    userMessage: userMessage,
+  };
+
+  try {
+    const newContact = await new Contact(data);
+    await newContact.save();
   } catch (err) {
     console.log(err);
   }
