@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import StarRating from "../components/StarRating";
 import Header from "../components/Header";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from "axios"
 import Footer from '../components/Footer';
 const ProductDetails = () => {
@@ -23,6 +23,7 @@ const ProductDetails = () => {
     "https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80",
     "https://cdn.blessthisstuff.com/imagens/stuff/black-airpods.jpg",
     "https://images.macrumors.com/t/NOSBT8abQNK_hSBGKOyfPj-0PCc=/1600x1200/smart/article-new/2016/09/Jet-Black-AirPods-1-800x450.jpg",
+    url
   ];
   let [currentUrlIndex, setCurrentUrlIndex] = React.useState(0);
   function handleChangeNext() {
@@ -53,13 +54,13 @@ const ProductDetails = () => {
 
         <div className="ProductDetails">
           <div>
-            <img src={product?.imageUrl} class="product-details-images" alt='image' />
+            <img src={product?.imageUrl} class="product-details-images" alt='' />
             <div className="small-images">
               <button onClick={handleChangePrevious}>
                 <img
                   className="change-big-image"
                   src="https://cdn.icon-icons.com/icons2/2838/PNG/512/go_previous_icon_180850.png"
-                  alt='image'
+                  alt=''
                 />
               </button>
               {imagesUrls.map((imageUrl, index) => (
@@ -71,7 +72,7 @@ const ProductDetails = () => {
                 <img
                   className="change-big-image"
                   src="https://cdn.icon-icons.com/icons2/2838/PNG/512/go_previous_icon_180852.png"
-                  alt='image'
+                  alt=''
                 />
               </button>
             </div>
@@ -94,7 +95,7 @@ const ProductDetails = () => {
           </div>
         </div>
         <div className="Add-to-cart-div">
-          <button className="Add-to-cart-button">Add to cart</button>
+          <Link to="/contact"> <button className="Add-to-cart-button">Contact</button></Link>
         </div>
 
       </div>
