@@ -21,16 +21,7 @@ const Header = () => {
             </li>
           </ul>
 
-          <div className="relative">
-            <img
-              className="w-10 hover:text-blue-900 underline-offset-2 decoration-[1px] cursor-pointer"
-              src={cart}
-              alt="cart"
-            />
-            <span className="absolute w-6 h-6 top-3 left-2 text-sm flex items-center justify-center font-semibold font-titleFont">
-              0
-            </span>
-          </div>
+          
           <div>
             <img
               className="w-8 h-8 rounded-full hover:text-blue-900 underline-offset-2 decoration-[1px] cursor-pointer"

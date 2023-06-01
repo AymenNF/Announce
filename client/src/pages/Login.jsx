@@ -26,7 +26,8 @@ function Login() {
             history("/admin")
           }
           else if (res.data === "not exists") {
-            alert("User already exists")
+            alert("User does not exists")
+            history("/signup")
           }
         })
         .catch(err => {
